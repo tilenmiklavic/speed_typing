@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Reddit Mono';
+  src: url('../static/font/RedditMono-VariableFont_wght.ttf') format('truetype');
+}
+
+:root {
+  --default-margin: 2rem;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Reddit Mono', monospace;
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+}
+
+#main {
+  background-color: lightblue;
+  height: 60vh;
+  /* width: 300px; */
+  flex: 0 0 calc(60% - var(--default-margin));
+  overflow: hidden;
+}
+
+#stats {
+  background-color: rgb(129, 163, 175);
+  /* height: 15vh; */
+  flex: 0 0 calc(20% - var(--default-margin));
+  color: white;
+  padding: 1rem;
+}
+
+.container {
+  margin: var(--default-margin);
+}
