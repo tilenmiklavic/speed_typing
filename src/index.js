@@ -54,7 +54,9 @@ window.addEventListener('load', async function () {
 
     // get a random word from the array
     let random = Math.floor(Math.random() * words.length);
+    let random2 = Math.floor(Math.random() * words.length);
     new_word(words[random]);
+    new_word(words[random2]);
 
   } catch (error) {
     console.error('Error:', error);

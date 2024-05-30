@@ -1,6 +1,7 @@
 export default class Word {
   constructor(text) {
     this.text = text;
+    this.typed_text = '';
     this.speed = 1;
     this.intervalId = null;
     this.state = null;
@@ -28,15 +29,23 @@ export default class Word {
   }
 
   update() {
-    this.typed.innerHTML = '';
+    this.typed_text = '';
     let text_index = 0;
     for (let i = 0; i < this.state.sequence.length; i++) {
       if (this.state.sequence[i] === this.text[text_index]) {
-        this.typed.innerHTML += this.text[text_index];
+        this.typed_text += this.text[text_index];
         text_index++;
       } 
     }
 
+    if (this.typed_text === this.text) {
+      this.state.removeWord(this);
+      this.element.remove();
+      this.stopUpdating();
+      return;
+    }
+
+    this.typed.innerHTML = this.typed_text;
     this.untyped.innerHTML = this.text.slice(text_index);
 
     this.move(this.speed, 0);
