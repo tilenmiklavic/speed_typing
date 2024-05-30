@@ -14,7 +14,6 @@ function new_word(text) {
   let main_container = document.getElementById('main');
 
   new_word.assignElement(word_container);
-  new_word.assignParent(main_container);
   new_word.assignState(state);
 
   word_container.classList.add('word-container');
@@ -30,6 +29,8 @@ function new_word(text) {
 
   state.addWord(new_word);
   new_word.startUpdating();
+  new_word.assignParent(main_container);
+
 }
 
 async function readWordsFile() {

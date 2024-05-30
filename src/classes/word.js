@@ -13,8 +13,10 @@ export default class Word {
 
   assignParent(parent) {
     this.parent = parent;
-    let rect = this.parent.getBoundingClientRect();
-    this.position = { x: rect.x, y: rect.y + Math.random() * rect.height };
+    this.parent_rect = this.parent.getBoundingClientRect();
+    let element_rect = this.element.getBoundingClientRect();
+
+    this.position = { x: this.parent_rect.right - element_rect.width, y: this.parent_rect.y + Math.random() * this.parent_rect.height };
   }
 
   assignState(state) {
@@ -22,9 +24,9 @@ export default class Word {
   }
 
   move(x, y) {
-    this.position.x += x;
+    this.position.x -= x;
     this.position.y += y;
-    this.element.style.left = this.position.x + 'px';
+    this.element.style.right = this.position.x + 'px';
     this.element.style.top = this.position.y + 'px';
   }
 
@@ -55,7 +57,7 @@ export default class Word {
 
     this.move(this.speed, 0);
 
-    if (this.position.x > this.parent.getBoundingClientRect().right) {
+    if (this.position.x < this.parent_rect.x) {
       this.state.removeWord(this);
       this.element.remove();
       this.stopUpdating();
