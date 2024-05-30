@@ -1,17 +1,5 @@
 .word-container {
   position: absolute;
-  /* top: 50%; Center vertically */
-  /* left: 0; */
-  /* transform: translateY(-50%); */
-  /* animation: moveWord 5s linear infinite; */
-}
-@keyframes moveWord {
-  0% {
-    left: 0;
-  }
-  100% {
-    left: 100%;
-  }
 }
 
 .untyped {

@@ -28,18 +28,16 @@ export default class Word {
   }
 
   update() {
-    // console.log(this.text)
     this.typed.innerHTML = '';
-    // this.untyped.innerHTML = '';
+    let text_index = 0;
     for (let i = 0; i < this.state.sequence.length; i++) {
-      if (this.state.sequence[i] === this.text[i]) {
-        this.typed.innerHTML += this.text[i];
-      } else {
-        console.log(this.text.slice(i + 1))
-        this.untyped.innerHTML = this.text.slice(i + 1);
-        break;
-      }
+      if (this.state.sequence[i] === this.text[text_index]) {
+        this.typed.innerHTML += this.text[text_index];
+        text_index++;
+      } 
     }
+
+    this.untyped.innerHTML = this.text.slice(text_index);
 
     this.move(this.speed, 0);
 
