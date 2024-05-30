@@ -1,9 +1,15 @@
+
 export default class State {
   constructor() {
     this.state = {
       words: [],
     };
     this.sequence = [];
+    this.words_bank = [];
+    this.speed = 3;
+    this.words_killed = 0;
+    this.startUpdating();
+    this.intervalId = null;
   }
 
   getState() {
@@ -30,5 +36,15 @@ export default class State {
 
   setState(newState) {
     this.state = { ...this.state, ...newState };
+  }
+
+  update() {
+    this.add_word(this.words_bank[Math.floor(Math.random() * this.words_bank.length)]);
+  }
+
+  startUpdating() {
+    let interval = 1000 * this.speed; 
+    console.log(interval)
+    this.intervalId = setInterval(() => this.update(), interval);
   }
 }

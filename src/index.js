@@ -51,13 +51,8 @@ document.addEventListener('keydown', function (event) {
 window.addEventListener('load', async function () {
   try {
     const words = await readWordsFile();
-
-    // get a random word from the array
-    let random = Math.floor(Math.random() * words.length);
-    let random2 = Math.floor(Math.random() * words.length);
-    new_word(words[random]);
-    new_word(words[random2]);
-
+    state.words_bank = words;
+    state.add_word = new_word;
   } catch (error) {
     console.error('Error:', error);
   }

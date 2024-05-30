@@ -1,6 +1,6 @@
 export default class Word {
   constructor(text) {
-    this.text = text;
+    this.text = text.toLowerCase();
     this.typed_text = '';
     this.speed = 1;
     this.intervalId = null;
@@ -28,6 +28,13 @@ export default class Word {
     this.element.style.top = this.position.y + 'px';
   }
 
+  kill_word() {
+    this.state.removeWord(this);
+    this.element.remove();
+    this.stopUpdating();
+    this.state.clearSequence();
+  }
+
   update() {
     this.typed_text = '';
     let text_index = 0;
@@ -39,9 +46,7 @@ export default class Word {
     }
 
     if (this.typed_text === this.text) {
-      this.state.removeWord(this);
-      this.element.remove();
-      this.stopUpdating();
+      this.kill_word();
       return;
     }
 
