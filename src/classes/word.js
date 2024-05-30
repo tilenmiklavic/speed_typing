@@ -13,7 +13,7 @@ export default class Word {
   assignParent(parent) {
     this.parent = parent;
     let rect = this.parent.getBoundingClientRect();
-    this.position = { x: rect.x, y: rect.y };
+    this.position = { x: rect.x, y: rect.y + Math.random() * rect.height };
   }
 
   assignState(state) {
