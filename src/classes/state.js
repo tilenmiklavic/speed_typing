@@ -67,8 +67,4 @@ export default class State {
     // update fails
     document.getElementById('fails').innerHTML = this.state.fails;
   }
-
-  demo() {
-    this.state.words_killed++;
-  }
 }
