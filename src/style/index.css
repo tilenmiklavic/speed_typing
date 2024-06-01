@@ -43,3 +43,7 @@ body {
 .container {
   margin: var(--default-margin);
 }
+
+.stats-title {
+  margin-bottom: 1rem;
+}

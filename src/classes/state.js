@@ -2,26 +2,36 @@
 export default class State {
   constructor() {
     this.state = {
-      words: [],
-    };
+      speed: 3,
+      words_killed: 0
+    }
+    
+    this.words = [],
     this.sequence = [];
     this.words_bank = [];
-    this.speed = 3;
-    this.words_killed = 0;
     this.startUpdating();
     this.intervalId = null;
+
+    this.state = new Proxy(this.state, {
+      set: (target, property, value) => {
+        target[property] = value;
+        this.updateDOM();
+        return true;
+      }
+    });
   }
 
   getState() {
-    return this.state;
+    return this;
   }
 
   addWord(word) {
-    this.state.words.push(word);
+    this.words.push(word);
   }
 
   removeWord(word) {
-    this.state.words = this.state.words.filter(w => w !== word);
+    this.words = this.words.filter(w => w !== word);
+    this.state.words_killed++;
   }
 
   addToSequence(character) {
@@ -34,17 +44,21 @@ export default class State {
     this.sequence = [];
   }
 
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-  }
-
   update() {
     this.add_word(this.words_bank[Math.floor(Math.random() * this.words_bank.length)]);
   }
 
   startUpdating() {
-    let interval = 1000 * this.speed; 
-    console.log(interval)
+    let interval = 1000 * this.state.speed; 
     this.intervalId = setInterval(() => this.update(), interval);
+  }
+
+  updateDOM() {
+    // update words killed
+    document.getElementById('words-killed').innerHTML = this.state.words_killed;
+  }
+
+  demo() {
+    this.state.words_killed++;
   }
 }

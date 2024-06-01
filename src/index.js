@@ -7,7 +7,7 @@ let state = new State();
 function new_word(text) {
   // create new object word 
   // place it inside the #main div
-  let new_word = new Word(text);
+  let new_word = new Word(text.toLowerCase());
   let word_container = document.createElement('div');
   let typed_container = document.createElement('span');
   let untyped_container = document.createElement('span');
