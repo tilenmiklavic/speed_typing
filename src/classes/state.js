@@ -3,7 +3,8 @@ export default class State {
   constructor() {
     this.state = {
       speed: 3,
-      words_killed: 0
+      words_killed: 0,
+      fails: 0
     }
     
     this.words = [],
@@ -29,9 +30,15 @@ export default class State {
     this.words.push(word);
   }
 
-  removeWord(word) {
+  removeWord(word, killed = true) {
     this.words = this.words.filter(w => w !== word);
-    this.state.words_killed++;
+    
+    if (killed) {
+      this.state.words_killed++;
+      this.clearSequence();
+    } else {
+      this.state.fails++;
+    }
   }
 
   addToSequence(character) {
@@ -56,6 +63,9 @@ export default class State {
   updateDOM() {
     // update words killed
     document.getElementById('words-killed').innerHTML = this.state.words_killed;
+
+    // update fails
+    document.getElementById('fails').innerHTML = this.state.fails;
   }
 
   demo() {

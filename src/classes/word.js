@@ -30,11 +30,10 @@ export default class Word {
     this.element.style.top = this.position.y + 'px';
   }
 
-  kill_word() {
-    this.state.removeWord(this);
+  kill_word(killed = true) {
+    this.state.removeWord(this, killed);
     this.element.remove();
     this.stopUpdating();
-    this.state.clearSequence();
   }
 
   update() {
@@ -48,7 +47,7 @@ export default class Word {
     }
 
     if (this.typed_text === this.text) {
-      this.kill_word();
+      this.kill_word(true);
       return;
     }
 
@@ -58,9 +57,7 @@ export default class Word {
     this.move(this.speed, 0);
 
     if (this.position.x < this.parent_rect.x) {
-      this.state.removeWord(this);
-      this.element.remove();
-      this.stopUpdating();
+      this.kill_word(false);
     }
   }
 
