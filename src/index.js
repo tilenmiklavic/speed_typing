@@ -24,7 +24,7 @@ function new_word(text) {
   word_container.appendChild(untyped_container);
   new_word.untyped = untyped_container;
   new_word.typed = typed_container;
-  
+
   main.appendChild(word_container);
 
   state.addWord(new_word);
@@ -45,9 +45,19 @@ async function readWordsFile() {
   };
 }
 
+// LISTENERS 
 document.addEventListener('keydown', function (event) {
   state.addToSequence(event.key);
 });
+
+document.getElementById('increase-speed').addEventListener('click', function (event) {
+  state.updateSpeed(1);
+});
+
+document.getElementById('decrease-speed').addEventListener('click', function (event) {
+  state.updateSpeed(-1);
+});
+
 
 window.addEventListener('load', async function () {
   try {

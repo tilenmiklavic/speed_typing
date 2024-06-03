@@ -15,12 +15,32 @@
   <div id="main" class="container">
   </div>
 
-  <div id="stats" class="container">
-    <div class="stats-title">
-      <b>Stats container</b>
+  <div id="overview" class="container">
+    <div id="overview-content" class="row">
+      <div id="stats" class="col">
+        <div class="title">
+          <b>Stats container</b>
+        </div>
+        <div>
+          <div>Words killed: <span id="words-killed">0</span></div>
+          <div>Words failed: <span id="fails">0</span></div>
+        </div>
+        <div>
+          <div>Accuracy: <span id="accuracy">0</span>%</div>
+          <!-- <div>WPM: <span id="wpm">0</span></div> -->
+        </div>
+      </div>
+      <div id="controls" class="col">
+        <div class="title">
+          <b>Controls container</b>
+        </div>
+        <div class="row center">
+          <img id="decrease-speed" class="icon" src="../lib/icons/minus-square-svgrepo-com.svg" alt="minus">
+          <div id="speed">0</div>
+          <img id="increase-speed" class="icon" src="../lib/icons/plus-square-svgrepo-com.svg" alt="plus">
+        </div>
+      </div>
     </div>
-    <div>Words killed: <span id="words-killed">0</span></div>
-    <div>Words failed: <span id="fails">0</span></div>
   </div>
 </body>
 </html>

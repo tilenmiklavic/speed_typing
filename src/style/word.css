@@ -3,5 +3,9 @@
 }
 
 .untyped {
-  color: red;
+  color: rgb(45, 45, 45);
+}
+
+.typed {
+  color: rgb(255, 242, 96);
 }

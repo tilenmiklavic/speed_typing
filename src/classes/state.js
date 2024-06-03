@@ -6,8 +6,8 @@ export default class State {
       words_killed: 0,
       fails: 0
     }
-    
-    this.words = [],
+
+    this.words = [];
     this.sequence = [];
     this.words_bank = [];
     this.startUpdating();
@@ -32,7 +32,7 @@ export default class State {
 
   removeWord(word, killed = true) {
     this.words = this.words.filter(w => w !== word);
-    
+
     if (killed) {
       this.state.words_killed++;
       this.clearSequence();
@@ -56,15 +56,26 @@ export default class State {
   }
 
   startUpdating() {
-    let interval = 1000 * this.state.speed; 
+    let interval = 1000 * this.state.speed;
     this.intervalId = setInterval(() => this.update(), interval);
+    this.updateDOM();
+  }
+
+  updateSpeed(speed) {
+    this.state.speed += speed;
+    clearInterval(this.intervalId);
+    this.startUpdating();
   }
 
   updateDOM() {
-    // update words killed
+    // update stats
     document.getElementById('words-killed').innerHTML = this.state.words_killed;
-
-    // update fails
     document.getElementById('fails').innerHTML = this.state.fails;
+    console.log((this.state.words_killed / (this.state.words_killed + this.state.fails)) || 0)
+    document.getElementById('accuracy').innerHTML = (((this.state.words_killed / (this.state.words_killed + this.state.fails)) || 0) * 100).toFixed(0);
+    // document.getElementById('wpm').innerHTML = this.state.fails;
+
+    // update speed
+    document.getElementById('speed').innerHTML = this.state.speed;
   }
 }

@@ -24,6 +24,21 @@ body {
   flex-direction: column;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  align-items: center;
+}
+
 #main {
   background-color: lightblue;
   height: 60vh;
@@ -32,7 +47,7 @@ body {
   overflow: hidden;
 }
 
-#stats {
+#overview {
   background-color: rgb(129, 163, 175);
   /* height: 15vh; */
   flex: 0 0 calc(20% - var(--default-margin));
@@ -40,10 +55,21 @@ body {
   padding: 1rem;
 }
 
+#overview-content {
+  width: 50%;
+  justify-content: space-between;
+}
+
 .container {
   margin: var(--default-margin);
 }
 
-.stats-title {
+.title {
   margin-bottom: 1rem;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.5rem;
 }
