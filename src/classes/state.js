@@ -2,7 +2,8 @@
 export default class State {
   constructor() {
     this.state = {
-      speed: 3,
+      speed: 1,
+      wpm: 40,
       words_killed: 0,
       fails: 0
     }
@@ -56,15 +57,24 @@ export default class State {
   }
 
   startUpdating() {
-    let interval = 1000 * this.state.speed;
+    let MILISECONDS_PER_MINUTE = 60000;
+    let interval = MILISECONDS_PER_MINUTE / this.state.wpm;
     this.intervalId = setInterval(() => this.update(), interval);
     this.updateDOM();
   }
 
-  updateSpeed(speed) {
-    this.state.speed += speed;
+  updateWPM(wpm) {
+    this.state.wpm += wpm;
     clearInterval(this.intervalId);
     this.startUpdating();
+  }
+
+  updateSpeed(speed) {
+    this.state.speed += speed;
+
+    this.words.forEach(word => {
+      word.speed = this.state.speed;
+    });
   }
 
   updateDOM() {
@@ -74,6 +84,9 @@ export default class State {
     console.log((this.state.words_killed / (this.state.words_killed + this.state.fails)) || 0)
     document.getElementById('accuracy').innerHTML = (((this.state.words_killed / (this.state.words_killed + this.state.fails)) || 0) * 100).toFixed(0);
     // document.getElementById('wpm').innerHTML = this.state.fails;
+
+    // update wpm
+    document.getElementById('wpm').innerHTML = this.state.wpm;
 
     // update speed
     document.getElementById('speed').innerHTML = this.state.speed;

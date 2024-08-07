@@ -50,6 +50,14 @@ document.addEventListener('keydown', function (event) {
   state.addToSequence(event.key);
 });
 
+document.getElementById('increase-wpm').addEventListener('click', function (event) {
+  state.updateWPM(1);
+});
+
+document.getElementById('decrease-wpm').addEventListener('click', function (event) {
+  state.updateWPM(-1);
+});
+
 document.getElementById('increase-speed').addEventListener('click', function (event) {
   state.updateSpeed(1);
 });

@@ -21,6 +21,7 @@ export default class Word {
 
   assignState(state) {
     this.state = state;
+    this.speed = this.state.state.speed;
   }
 
   move(x, y) {
@@ -43,7 +44,7 @@ export default class Word {
       if (this.state.sequence[i] === this.text[text_index]) {
         this.typed_text += this.text[text_index];
         text_index++;
-      } 
+      }
     }
 
     if (this.typed_text === this.text) {
