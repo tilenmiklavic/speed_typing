@@ -16,7 +16,16 @@ export default class Word {
     this.parent_rect = this.parent.getBoundingClientRect();
     let element_rect = this.element.getBoundingClientRect();
 
+    console.log(element_rect)
+
     this.position = { x: this.parent_rect.right - element_rect.width, y: this.parent_rect.y + Math.random() * this.parent_rect.height };
+    console.log(this.parent_rect.y + this.parent_rect.height)
+    console.log(this.position.y)
+
+    // temp fix 
+    if (this.position.y > this.parent_rect.y + this.parent_rect.height) {
+      this.position.y = this.parent_rect.y + this.parent_rect.height;
+    }
   }
 
   assignState(state) {
